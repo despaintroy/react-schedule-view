@@ -11,6 +11,22 @@
     "build": "rollup --config",
     "postbuild": "rm -rf node_modules"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/despaintroy/react-schedule-view"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "schedule",
+    "calendar",
+    "view",
+    "display",
+    "daily",
+    "week",
+    "google calendar",
+    "apple calendar"
+  ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
