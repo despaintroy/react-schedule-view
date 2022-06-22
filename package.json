@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf ./build",
-    "build": "rollup --config && cp -rf package.json ./build",
+    "build": "rollup --config",
+    "postbuild": "cp -rf package.json README.md ./build",
     "dist": "npm run build && cd build && npm publish"
   },
   "repository": {
