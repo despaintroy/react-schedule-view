@@ -4,7 +4,7 @@
   "description": "A zero-dependency, fully customizable component for displaying schedules in a daily or week format",
   "main": "build/index.js",
   "module": "build/index.es.js",
-  "author": "Troy DeSpain",
+  "author": "Troy DeSpain <despaintroy@gmail.com>",
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf ./build",
@@ -15,6 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/despaintroy/react-schedule-view"
   },
+  "homepage": "https://github.com/despaintroy/react-schedule-view",
   "keywords": [
     "react",
     "typescript",
