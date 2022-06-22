@@ -1,6 +1,6 @@
 import { numToHH, timeRangeFormatter } from "../helpers";
 import { testContrast } from "../utils/cssColorFunctions";
-import { ScheduleTheme } from "./themes";
+import { ScheduleTheme } from "../themes";
 
 export const colors = {
   greyGridline: "#DADCE0",

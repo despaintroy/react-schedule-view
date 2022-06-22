@@ -1,4 +1,3 @@
-export { default as ScheduleView } from "./ScheduleView";
-export * as models from "./models";
 export { createTheme } from "./createTheme";
-export * as themes from "./themes";
+export { default as ScheduleView } from "./ScheduleView";
+export { colors, DEFAULT_THEME, themes } from "./themes";

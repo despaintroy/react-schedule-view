@@ -1,7 +1,7 @@
 import { CSSProperties, FC } from "react";
-import { CalendarEvent } from "../models";
-import { appleTheme, colors as appleColors } from "./apple";
-import { colors as googleColors, googleTheme } from "./google";
+import { CalendarEvent } from "./models";
+import { appleTheme, colors as appleColors } from "./themes/apple";
+import { colors as googleColors, googleTheme } from "./themes/google";
 
 export type ThemeName = "google" | "apple";
 

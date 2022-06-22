@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import { numToHH, numToHHMM, timeRangeFormatter } from "../helpers";
 import { CalendarEvent } from "../models";
 import { cssColorToRGB, RGBToHSL } from "../utils/cssColorFunctions";
-import { ScheduleTheme } from "./themes";
+import { ScheduleTheme } from "../themes";
 
 export const colors = {
   greyBlackLabel: "#272727",
