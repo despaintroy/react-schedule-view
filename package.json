@@ -9,7 +9,7 @@
   "scripts": {
     "prebuild": "rm -rf ./build",
     "build": "rollup --config && cp -rf package.json ./build",
-    "dist": "cd build && npm publish"
+    "dist": "npm run build && cd build && npm publish"
   },
   "repository": {
     "type": "git",
