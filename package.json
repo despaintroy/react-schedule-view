@@ -2,15 +2,15 @@
   "name": "react-schedule-view",
   "version": "0.2.3",
   "description": "A zero-dependency, fully customizable component for displaying schedules in a daily or week format",
-  "main": "build/index.js",
-  "module": "build/index.es.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "author": "Troy DeSpain <despaintroy@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "prebuild": "rm -rf ./build",
+    "prebuild": "rm -rf ./dist",
     "build": "rollup --config",
-    "postbuild": "cp -rf package.json README.md ./build",
-    "dist": "npm run build && cd build && npm publish"
+    "postbuild": "cp -rf package.json README.md ./dist",
+    "dist": "npm run build && cd dist && npm publish"
   },
   "repository": {
     "type": "git",
