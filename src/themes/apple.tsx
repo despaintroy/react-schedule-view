@@ -1,4 +1,5 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useContext } from "react";
+import { ThemeContext } from "src/utils/themeContext";
 import { cssColorToRGB, RGBToHSL } from "../utils/cssColorFunctions";
 import { numToHH, numToHHMM, timeRangeFormatter } from "../utils/helpers";
 import { CalendarEvent, ScheduleTheme } from "../utils/models";
@@ -20,8 +21,10 @@ const AppleEventTile = <CustomCalendarEvent extends CalendarEvent>(
   props: PropsWithChildren<{ event: CustomCalendarEvent }>
 ) => {
   const { event } = props;
+  const theme = useContext(ThemeContext);
 
-  const colorRGB = cssColorToRGB(event.color);
+  const color = event.color ?? theme.eventTiles.defaultColor;
+  const colorRGB = cssColorToRGB(color);
   const colorHSL = RGBToHSL(colorRGB);
   const mediumLightnessColorString = `hsl(${colorHSL[0]}, ${colorHSL[1]}%, 50%)`;
   const darkLightnessColorString = `hsl(${colorHSL[0]}, ${colorHSL[1]}%, 30%)`;
