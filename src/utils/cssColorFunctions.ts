@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { clamp } from "../helpers";
+import { clamp } from "./helpers";
 
 /**
  * Given a background color and two foreground color options, returns the

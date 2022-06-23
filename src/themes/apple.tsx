@@ -1,10 +1,9 @@
 import { PropsWithChildren } from "react";
-import { numToHH, numToHHMM, timeRangeFormatter } from "../helpers";
-import { CalendarEvent } from "../models";
 import { cssColorToRGB, RGBToHSL } from "../utils/cssColorFunctions";
-import { ScheduleTheme } from "../themes";
+import { numToHH, numToHHMM, timeRangeFormatter } from "../utils/helpers";
+import { CalendarEvent, ScheduleTheme } from "../utils/models";
 
-export const colors = {
+export const appleColors = {
   greyBlackLabel: "#272727",
   greyLabel: "#C0C0C0",
   greyGridline: "#E5E5E5",
@@ -67,7 +66,7 @@ export const appleTheme: ScheduleTheme = {
   fontFamily: "Roboto, Helvetica, Arial, sans-serif",
   dayLabels: {
     style: {
-      color: colors.greyBlackLabel,
+      color: appleColors.greyBlackLabel,
     },
   },
   grid: {
@@ -75,18 +74,18 @@ export const appleTheme: ScheduleTheme = {
     hourHeight: "46px",
   },
   majorGridlines: {
-    borderStyle: `1px solid ${colors.greyGridline}`,
+    borderStyle: `1px solid ${appleColors.greyGridline}`,
   },
   minorGridlines: {
-    borderStyle: `1px dotted ${colors.greyGridline}`,
+    borderStyle: `1px dotted ${appleColors.greyGridline}`,
     linesPerHour: 0,
   },
   verticalGridlines: {
-    style: `1px solid ${colors.greyGridline}`,
+    style: `1px solid ${appleColors.greyGridline}`,
   },
   eventTiles: {
     timeRangeFormatter: timeRangeFormatter,
-    defaultColor: colors.blue,
+    defaultColor: appleColors.blue,
     style: {
       padding: 0,
       marginRight: "2px",
@@ -98,7 +97,7 @@ export const appleTheme: ScheduleTheme = {
   timeScale: {
     timeFormatter: numToHH,
     style: {
-      color: colors.greyLabel,
+      color: appleColors.greyLabel,
       fontSize: "0.7rem",
     },
   },

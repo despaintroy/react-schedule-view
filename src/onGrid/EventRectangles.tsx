@@ -1,8 +1,8 @@
 import { PropsWithChildren, useContext } from "react";
-import { positionEventsOnGrid } from "../eventOrganizeDisplay";
-import { CalendarEvent, DaySchedule } from "../models";
-import { ThemeContext } from "../ScheduleView";
+import { ThemeContext } from "src/utils/themeContext";
 import { testContrast } from "../utils/cssColorFunctions";
+import { positionEventsOnGrid } from "../utils/eventOrganizeDisplay";
+import { CalendarEvent, DaySchedule } from "../utils/models";
 
 export interface EventRectanglesProps<
   CustomCalendarEvent extends CalendarEvent

@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import { ThemeContext } from "../ScheduleView";
+import { ThemeContext } from "src/utils/themeContext";
 
 export interface TimeLabelsProps {
   numHours: number;

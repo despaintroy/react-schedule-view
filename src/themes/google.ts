@@ -1,8 +1,8 @@
-import { numToHH, timeRangeFormatter } from "../helpers";
+import { ScheduleTheme } from "src/utils/models";
 import { testContrast } from "../utils/cssColorFunctions";
-import { ScheduleTheme } from "../themes";
+import { numToHH, timeRangeFormatter } from "../utils/helpers";
 
-export const colors = {
+export const googleColors = {
   greyGridline: "#DADCE0",
   greyTimeLabel: "#70757a",
   greyDayLabel: "#3c4043",
@@ -22,7 +22,7 @@ export const googleTheme: ScheduleTheme = {
   fontFamily: "Roboto, Helvetica, Arial, sans-serif",
   dayLabels: {
     style: {
-      color: colors.greyDayLabel,
+      color: googleColors.greyDayLabel,
       textTransform: "uppercase",
     },
   },
@@ -31,18 +31,18 @@ export const googleTheme: ScheduleTheme = {
     hourHeight: "46px",
   },
   majorGridlines: {
-    borderStyle: `1px solid ${colors.greyGridline}`,
+    borderStyle: `1px solid ${googleColors.greyGridline}`,
   },
   minorGridlines: {
-    borderStyle: `1px dotted ${colors.greyGridline}`,
+    borderStyle: `1px dotted ${googleColors.greyGridline}`,
     linesPerHour: 0,
   },
   verticalGridlines: {
-    style: `1px solid ${colors.greyGridline}`,
+    style: `1px solid ${googleColors.greyGridline}`,
   },
   eventTiles: {
     timeRangeFormatter: timeRangeFormatter,
-    defaultColor: colors.blue,
+    defaultColor: googleColors.blue,
     style: (color) => ({
       color: testContrast(color, "white", "black", 0.3),
     }),
@@ -50,7 +50,7 @@ export const googleTheme: ScheduleTheme = {
   timeScale: {
     timeFormatter: numToHH,
     style: {
-      color: colors.greyTimeLabel,
+      color: googleColors.greyTimeLabel,
       fontSize: "0.7rem",
     },
   },

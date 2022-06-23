@@ -1,10 +1,11 @@
-import { createContext, PropsWithChildren } from "react";
-import { CalendarEvent, DaySchedule } from "./models";
+import { PropsWithChildren } from "react";
 import DayLabels from "./onGrid/DayLabels";
 import EventRectangles from "./onGrid/EventRectangles";
 import Gridlines from "./onGrid/Gridlines";
 import TimeLabels from "./onGrid/TimeLabels";
-import { DEFAULT_THEME, ScheduleTheme } from "./themes";
+import { DEFAULT_THEME } from "./themes/themes";
+import { CalendarEvent, DaySchedule, ScheduleTheme } from "./utils/models";
+import { ThemeContext } from "./utils/themeContext";
 
 export interface ScheduleViewProps<CustomCalendarEvent extends CalendarEvent> {
   daySchedules: DaySchedule<CustomCalendarEvent>[];
@@ -13,8 +14,6 @@ export interface ScheduleViewProps<CustomCalendarEvent extends CalendarEvent> {
   handleEventClick?: (event: CustomCalendarEvent) => void;
   theme?: ScheduleTheme;
 }
-
-export const ThemeContext = createContext(DEFAULT_THEME);
 
 const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
   props: PropsWithChildren<ScheduleViewProps<CustomCalendarEvent>>

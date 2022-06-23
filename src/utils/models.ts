@@ -1,21 +1,39 @@
 import { CSSProperties, FC } from "react";
-import { CalendarEvent } from "./models";
-import { appleTheme, colors as appleColors } from "./themes/apple";
-import { colors as googleColors, googleTheme } from "./themes/google";
 
-export type ThemeName = "google" | "apple";
+export interface DaySchedule<
+  CustomCalendarEvent extends CalendarEvent = CalendarEvent
+> {
+  name: string;
+  events: CustomCalendarEvent[];
+}
 
-export const themes: Record<ThemeName, ScheduleTheme> = {
-  google: googleTheme,
-  apple: appleTheme,
-};
+export interface CalendarEvent {
+  id?: string;
+  startTime: number;
+  endTime: number;
+  title: string;
+  description?: string;
+  color?: CSSProperties["backgroundColor"];
+}
 
-export const colors: Record<ThemeName, Record<string, string>> = {
-  google: googleColors,
-  apple: appleColors,
-};
+// Rows/cols indexed starting from 1 to match CSS
+export interface PositionedEvent<CustomCalendarEvent extends CalendarEvent> {
+  event: CustomCalendarEvent;
+  col: number;
+  endCol: number;
+  // Row numbers are relative to the first row of the event group
+  row: number;
+  endRow: number;
+}
 
-export const DEFAULT_THEME = themes.google;
+export interface PositionedEventGroup<
+  CustomCalendarEvent extends CalendarEvent
+> {
+  totalCols: number;
+  groupStartRow: number;
+  groupEndRow: number;
+  positionedEvents: PositionedEvent<CustomCalendarEvent>[];
+}
 
 export interface ScheduleTheme<
   CustomCalendarEvent extends CalendarEvent = CalendarEvent
