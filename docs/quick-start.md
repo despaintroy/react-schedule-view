@@ -1,16 +1,22 @@
-# React Schedule View
+# Quick Start
 
 React Schedule View is a zero-dependency, fully customizable component for displaying schedules in a daily or week format.
 
 This package is currently under development and should not be used until a 1.0 version is published.
 
-![](./docs/_media/screenshot.jpg)
+![](./_media/screenshot.jpg)
+
+## Install
+
+React Schedule View is compatible with React versions 17 and 18.
+
+```bash
+npm i react-schedule-view
+```
 
 ## Example Usage
 
-```javascript
-...
-
+```typescript
 const data: DaySchedule[] = [
   {
     name: "Today",
@@ -33,13 +39,13 @@ const data: DaySchedule[] = [
     ],
   },
 ];
-
-...
-
-return(<ScheduleView daySchedules={data} viewStartTime={15} viewEndTime={20} />)
 ```
 
-![](./docs/_media/screenshot-example.jpg)
+```tsx
+<ScheduleView daySchedules={data} viewStartTime={15} viewEndTime={20} />
+```
+
+![](./_media/screenshot-example.jpg)
 
 ## Schedule Data Format
 

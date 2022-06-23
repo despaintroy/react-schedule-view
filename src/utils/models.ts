@@ -8,7 +8,6 @@ export interface DaySchedule<
 }
 
 export interface CalendarEvent {
-  id?: string;
   startTime: number;
   endTime: number;
   title: string;
