@@ -1,9 +1,8 @@
-import { PropsWithChildren } from "react";
 import DayLabels from "./onGrid/DayLabels";
 import EventRectangles from "./onGrid/EventRectangles";
 import Gridlines from "./onGrid/Gridlines";
 import TimeLabels from "./onGrid/TimeLabels";
-import { DEFAULT_THEME } from "./themes/themes";
+import { DEFAULT_THEME } from "./themes/default";
 import { CalendarEvent, DaySchedule, ScheduleTheme } from "./utils/models";
 import { ThemeContext } from "./utils/themeContext";
 
@@ -16,7 +15,7 @@ export interface ScheduleViewProps<CustomCalendarEvent extends CalendarEvent> {
 }
 
 const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
-  props: PropsWithChildren<ScheduleViewProps<CustomCalendarEvent>>
+  props: ScheduleViewProps<CustomCalendarEvent>
 ) => {
   const {
     daySchedules,
@@ -37,12 +36,12 @@ const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
     <ThemeContext.Provider value={theme}>
       <div
         style={{
-          fontFamily: theme.fontFamily,
           display: "grid",
           gridTemplateColumns: `auto repeat(${numDays}, 1fr)`,
           gridTemplateRows: `auto repeat(${
             numHours * subdivisionsPerHour
           }, calc(${theme.grid.hourHeight} / ${subdivisionsPerHour}))`,
+          ...theme.style,
         }}
       >
         <Gridlines numHours={numHours} numDays={numDays} />

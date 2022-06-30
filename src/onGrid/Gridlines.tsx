@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import { ThemeContext } from "src/utils/themeContext";
+import { ThemeContext } from "../utils/themeContext";
 import HorizontalLines from "./HorizontalLines";
 
 export interface GridlinesProps {

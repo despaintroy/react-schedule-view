@@ -1,8 +1,6 @@
-import { PropsWithChildren, useContext } from "react";
-import { ThemeContext } from "src/utils/themeContext";
-import { cssColorToRGB, RGBToHSL } from "../utils/cssColorFunctions";
-import { numToHH, numToHHMM, timeRangeFormatter } from "../utils/helpers";
-import { CalendarEvent, ScheduleTheme } from "../utils/models";
+import { numToHH, numToHHMM } from "../utils/helpers";
+import { ScheduleTheme } from "../utils/models";
+import { AppleEventTile } from "./AppleEventTile";
 
 export const appleColors = {
   greyBlackLabel: "#272727",
@@ -17,56 +15,10 @@ export const appleColors = {
   brown: "#A78E6D",
 };
 
-const AppleEventTile = <CustomCalendarEvent extends CalendarEvent>(
-  props: PropsWithChildren<{ event: CustomCalendarEvent }>
-) => {
-  const { event } = props;
-  const theme = useContext(ThemeContext);
-
-  const color = event.color ?? theme.eventTiles.defaultColor;
-  const colorRGB = cssColorToRGB(color);
-  const colorHSL = RGBToHSL(colorRGB);
-  const mediumLightnessColorString = `hsl(${colorHSL[0]}, ${colorHSL[1]}%, 50%)`;
-  const darkLightnessColorString = `hsl(${colorHSL[0]}, ${colorHSL[1]}%, 30%)`;
-
-  return (
-    <div
-      style={{
-        padding: "5px",
-        backgroundColor: `rgba(${colorRGB[0]}, ${colorRGB[1]}, ${colorRGB[2]}, 0.3)`,
-        height: "100%",
-        borderLeft: `4px solid ${mediumLightnessColorString}`,
-        color: darkLightnessColorString,
-      }}
-    >
-      <div
-        style={{
-          fontSize: "0.8rem",
-          fontWeight: "lighter",
-          marginTop: "0.25rem",
-        }}
-      >
-        {event.startTime % 1 === 0
-          ? numToHH(event.startTime)
-          : numToHHMM(event.startTime)}
-      </div>
-      <div style={{ fontWeight: "bold", fontSize: "0.8rem" }}>
-        {event.title}
-      </div>
-      <div
-        style={{
-          fontSize: "0.8rem",
-          marginTop: "0.25rem",
-        }}
-      >
-        {event.description}
-      </div>
-    </div>
-  );
-};
-
 export const appleTheme: ScheduleTheme = {
-  fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+  style: {
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+  },
   dayLabels: {
     style: {
       color: appleColors.greyBlackLabel,
@@ -87,7 +39,8 @@ export const appleTheme: ScheduleTheme = {
     style: `1px solid ${appleColors.greyGridline}`,
   },
   eventTiles: {
-    timeRangeFormatter: timeRangeFormatter,
+    timeRangeFormatter: (startTime, _endTime) =>
+      startTime % 1 === 0 ? numToHH(startTime) : numToHHMM(startTime),
     defaultColor: appleColors.blue,
     style: {
       padding: 0,
@@ -98,7 +51,7 @@ export const appleTheme: ScheduleTheme = {
     customTileComponent: AppleEventTile,
   },
   timeScale: {
-    timeFormatter: numToHH,
+    timeFormatter: (time) => (time === 12 ? "Noon" : numToHH(time)),
     style: {
       color: appleColors.greyLabel,
       fontSize: "0.7rem",

@@ -1,6 +1,5 @@
-import deepMerge from "src/utils/deepMerge";
-import { ScheduleTheme } from "src/utils/models";
-import { PartialDeep } from "type-fest";
+import deepMerge from "../utils/deepMerge";
+import { ScheduleTheme, ScheduleThemeOverride } from "../utils/models";
 import { appleColors, appleTheme } from "./apple";
 import { googleColors, googleTheme } from "./google";
 
@@ -16,11 +15,9 @@ export const colors: Record<ThemeName, Record<string, string>> = {
   apple: appleColors,
 };
 
-export const DEFAULT_THEME = googleTheme;
-
 export const createTheme = (
   baseTheme: ScheduleTheme | ThemeName,
-  partialTheme: PartialDeep<ScheduleTheme>
+  partialTheme: ScheduleThemeOverride
 ): ScheduleTheme => {
   const selectedBaseTheme =
     typeof baseTheme === "string" ? themes[baseTheme] : baseTheme;

@@ -1,4 +1,4 @@
-import { ScheduleTheme } from "src/utils/models";
+import { ScheduleTheme } from "../utils/models";
 import { testContrast } from "../utils/cssColorFunctions";
 import { numToHH, timeRangeFormatter } from "../utils/helpers";
 
@@ -19,7 +19,7 @@ export const googleColors = {
 };
 
 export const googleTheme: ScheduleTheme = {
-  fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+  style: { fontFamily: "Roboto, Helvetica, Arial, sans-serif" },
   dayLabels: {
     style: {
       color: googleColors.greyDayLabel,
@@ -43,8 +43,13 @@ export const googleTheme: ScheduleTheme = {
   eventTiles: {
     timeRangeFormatter: timeRangeFormatter,
     defaultColor: googleColors.blue,
-    style: (color) => ({
-      color: testContrast(color, "white", "black", 0.3),
+    style: ({ event, theme }) => ({
+      color: testContrast(
+        event.color ?? theme.eventTiles.defaultColor,
+        "white",
+        "black",
+        0.3
+      ),
     }),
   },
   timeScale: {

@@ -34,10 +34,16 @@ export interface PositionedEventGroup<
   positionedEvents: PositionedEvent<CustomCalendarEvent>[];
 }
 
+export type ScheduleThemeOverride = DeepPartial<ScheduleTheme>;
+
+export type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>;
+};
+
 export interface ScheduleTheme<
   CustomCalendarEvent extends CalendarEvent = CalendarEvent
 > {
-  fontFamily: CSSProperties["fontFamily"];
+  style: CSSProperties;
   dayLabels: {
     style: CSSProperties;
   };
@@ -60,8 +66,12 @@ export interface ScheduleTheme<
     defaultColor: CSSProperties["backgroundColor"];
     style:
       | CSSProperties
-      | ((color: CSSProperties["backgroundColor"]) => CSSProperties);
+      | ((args: {
+          event: CustomCalendarEvent;
+          theme: ScheduleTheme<CustomCalendarEvent>;
+        }) => CSSProperties);
     customTileComponent?: FC<{ event: CustomCalendarEvent }>;
+    tileContent?: FC<{ event: CustomCalendarEvent }>;
   };
   timeScale: {
     timeFormatter: (time: number) => string;
