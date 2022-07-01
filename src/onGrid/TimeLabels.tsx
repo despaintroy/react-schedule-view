@@ -23,11 +23,11 @@ const TimeLabels: FC<TimeLabelsProps> = (props) => {
               gridRow: `${i * subdivisionsPerHour + 2}`,
               textAlign: "right",
               paddingRight: "1rem",
-              ...theme.timeScale.style,
+              ...theme.style?.timeScaleLabels,
             }}
           >
             <div style={{ position: "relative", top: "-0.6em" }}>
-              {theme.timeScale.timeFormatter(viewStartTime + i)}
+              {theme.timeFormatter(viewStartTime + i)}
             </div>
           </div>
         );

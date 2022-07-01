@@ -17,44 +17,30 @@ export const appleColors = {
 
 export const appleTheme: ScheduleTheme = {
   style: {
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-  },
-  dayLabels: {
-    style: {
+    root: { fontFamily: "Roboto, Helvetica, Arial, sans-serif" },
+    dayLabels: {
       color: appleColors.greyBlackLabel,
     },
-  },
-  grid: {
-    subdivisionsPerHour: 12,
-    hourHeight: "46px",
-  },
-  majorGridlines: {
-    borderStyle: `1px solid ${appleColors.greyGridline}`,
-  },
-  minorGridlines: {
-    borderStyle: `1px dotted ${appleColors.greyGridline}`,
-    linesPerHour: 0,
-  },
-  verticalGridlines: {
-    style: `1px solid ${appleColors.greyGridline}`,
-  },
-  eventTiles: {
-    timeRangeFormatter: (startTime, _endTime) =>
-      startTime % 1 === 0 ? numToHH(startTime) : numToHHMM(startTime),
-    defaultColor: appleColors.blue,
-    style: {
+    timeScaleLabels: {
+      color: appleColors.greyLabel,
+      fontSize: "0.7rem",
+    },
+    majorGridlinesBorder: `1px solid ${appleColors.greyGridline}`,
+    minorGridlinesBorder: `1px dotted ${appleColors.greyGridline}`,
+    verticalGridlinesBorder: `1px solid ${appleColors.greyGridline}`,
+    eventTiles: {
       padding: 0,
       marginRight: "2px",
       marginBlock: "1px",
       backgroundColor: "unset",
     },
-    customTileComponent: AppleEventTile,
   },
-  timeScale: {
-    timeFormatter: (time) => (time === 12 ? "Noon" : numToHH(time)),
-    style: {
-      color: appleColors.greyLabel,
-      fontSize: "0.7rem",
-    },
-  },
+  subdivisionsPerHour: 12,
+  hourHeight: "46px",
+  minorGridlinesPerHour: 0,
+  timeRangeFormatter: (startTime, _endTime) =>
+    startTime % 1 === 0 ? numToHH(startTime) : numToHHMM(startTime),
+  defaultTileColor: appleColors.blue,
+  timeFormatter: (time) => (time === 12 ? "Noon" : numToHH(time)),
+  customTileComponent: AppleEventTile,
 };

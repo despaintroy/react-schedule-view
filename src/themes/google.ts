@@ -1,6 +1,6 @@
-import { ScheduleTheme } from "../utils/models";
 import { testContrast } from "../utils/cssColorFunctions";
 import { numToHH, timeRangeFormatter } from "../utils/helpers";
+import { ScheduleTheme } from "../utils/models";
 
 export const googleColors = {
   greyGridline: "#DADCE0",
@@ -19,44 +19,32 @@ export const googleColors = {
 };
 
 export const googleTheme: ScheduleTheme = {
-  style: { fontFamily: "Roboto, Helvetica, Arial, sans-serif" },
-  dayLabels: {
-    style: {
+  style: {
+    root: { fontFamily: "Roboto, Helvetica, Arial, sans-serif" },
+    dayLabels: {
       color: googleColors.greyDayLabel,
       textTransform: "uppercase",
     },
-  },
-  grid: {
-    subdivisionsPerHour: 12,
-    hourHeight: "46px",
-  },
-  majorGridlines: {
-    borderStyle: `1px solid ${googleColors.greyGridline}`,
-  },
-  minorGridlines: {
-    borderStyle: `1px dotted ${googleColors.greyGridline}`,
-    linesPerHour: 0,
-  },
-  verticalGridlines: {
-    style: `1px solid ${googleColors.greyGridline}`,
-  },
-  eventTiles: {
-    timeRangeFormatter: timeRangeFormatter,
-    defaultColor: googleColors.blue,
-    style: ({ event, theme }) => ({
+    timeScaleLabels: {
+      color: googleColors.greyTimeLabel,
+      fontSize: "0.7rem",
+    },
+    majorGridlinesBorder: `1px solid ${googleColors.greyGridline}`,
+    minorGridlinesBorder: `1px dotted ${googleColors.greyGridline}`,
+    verticalGridlinesBorder: `1px solid ${googleColors.greyGridline}`,
+    eventTiles: (event, theme) => ({
       color: testContrast(
-        event.color ?? theme.eventTiles.defaultColor,
+        event.color ?? theme.defaultTileColor,
         "white",
         "black",
         0.3
       ),
     }),
   },
-  timeScale: {
-    timeFormatter: numToHH,
-    style: {
-      color: googleColors.greyTimeLabel,
-      fontSize: "0.7rem",
-    },
-  },
+  subdivisionsPerHour: 12,
+  hourHeight: "46px",
+  minorGridlinesPerHour: 0,
+  timeRangeFormatter: timeRangeFormatter,
+  defaultTileColor: googleColors.blue,
+  timeFormatter: numToHH,
 };

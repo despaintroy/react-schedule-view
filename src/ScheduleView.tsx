@@ -25,9 +25,7 @@ const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
     theme = DEFAULT_THEME,
   } = props;
 
-  const {
-    grid: { subdivisionsPerHour },
-  } = theme;
+  const { subdivisionsPerHour, hourHeight, style } = theme;
 
   const numHours = viewEndTime - viewStartTime;
   const numDays = daySchedules.length;
@@ -40,8 +38,8 @@ const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
           gridTemplateColumns: `auto repeat(${numDays}, 1fr)`,
           gridTemplateRows: `auto repeat(${
             numHours * subdivisionsPerHour
-          }, calc(${theme.grid.hourHeight} / ${subdivisionsPerHour}))`,
-          ...theme.style,
+          }, calc(${hourHeight} / ${subdivisionsPerHour}))`,
+          ...style?.root,
         }}
       >
         <Gridlines numHours={numHours} numDays={numDays} />

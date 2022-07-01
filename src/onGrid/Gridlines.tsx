@@ -12,10 +12,7 @@ const Gridlines: FC<GridlinesProps> = (props) => {
 
   const theme = useContext(ThemeContext);
 
-  const {
-    grid: { subdivisionsPerHour },
-    minorGridlines: { linesPerHour: minorGridlinesPerHour },
-  } = theme;
+  const { subdivisionsPerHour, minorGridlinesPerHour, style } = theme;
 
   return (
     <>
@@ -25,7 +22,7 @@ const Gridlines: FC<GridlinesProps> = (props) => {
           numLines={numHours * minorGridlinesPerHour + 1}
           offset={1}
           spacing={subdivisionsPerHour / minorGridlinesPerHour - 1}
-          borderStyle={theme.minorGridlines.borderStyle}
+          borderStyle={style?.minorGridlinesBorder}
         />
       )}
 
@@ -34,7 +31,7 @@ const Gridlines: FC<GridlinesProps> = (props) => {
         numLines={numHours + 1}
         offset={1}
         spacing={subdivisionsPerHour - 1}
-        borderStyle={theme.majorGridlines.borderStyle}
+        borderStyle={style?.majorGridlinesBorder}
       />
 
       {/* Vertical Lines */}
@@ -45,7 +42,7 @@ const Gridlines: FC<GridlinesProps> = (props) => {
             style={{
               gridColumn: `${i + 2}`,
               gridRow: `2 / span ${numHours * subdivisionsPerHour}`,
-              borderRight: theme.verticalGridlines.style,
+              borderRight: style?.verticalGridlinesBorder,
             }}
           />
         );

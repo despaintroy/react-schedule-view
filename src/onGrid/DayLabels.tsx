@@ -21,7 +21,7 @@ const DayLabels: FC<DayLabelsProps> = (props) => {
               gridRow: `1`,
               padding: "0.5rem",
               textAlign: "center",
-              ...theme.dayLabels.style,
+              ...theme.style?.dayLabels,
             }}
           >
             {dayName}

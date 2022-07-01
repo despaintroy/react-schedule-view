@@ -43,38 +43,26 @@ export type DeepPartial<T> = {
 export interface ScheduleTheme<
   CustomCalendarEvent extends CalendarEvent = CalendarEvent
 > {
-  style: CSSProperties;
-  dayLabels: {
-    style: CSSProperties;
-  };
-  grid: {
-    subdivisionsPerHour: number; // Default 12, means 5 min intervals
-    hourHeight: CSSProperties["height"];
-  };
-  majorGridlines: {
-    borderStyle: CSSProperties["borderStyle"];
-  };
-  minorGridlines: {
-    borderStyle: CSSProperties["borderStyle"];
-    linesPerHour: number;
-  };
-  verticalGridlines: {
-    style: CSSProperties["borderStyle"];
-  };
-  eventTiles: {
-    timeRangeFormatter: (startTime: number, endTime: number) => string;
-    defaultColor: CSSProperties["backgroundColor"];
-    style:
+  style?: {
+    root?: CSSProperties;
+    dayLabels?: CSSProperties;
+    timeScaleLabels?: CSSProperties;
+    eventTiles?:
       | CSSProperties
-      | ((args: {
-          event: CustomCalendarEvent;
-          theme: ScheduleTheme<CustomCalendarEvent>;
-        }) => CSSProperties);
-    customTileComponent?: FC<{ event: CustomCalendarEvent }>;
-    tileContent?: FC<{ event: CustomCalendarEvent }>;
+      | ((
+          event: CustomCalendarEvent,
+          theme: ScheduleTheme<CustomCalendarEvent>
+        ) => CSSProperties);
+    majorGridlinesBorder?: CSSProperties["borderStyle"];
+    minorGridlinesBorder?: CSSProperties["borderStyle"];
+    verticalGridlinesBorder?: CSSProperties["borderStyle"];
   };
-  timeScale: {
-    timeFormatter: (time: number) => string;
-    style: CSSProperties;
-  };
+  subdivisionsPerHour: number; // Default 12, means 5 min intervals
+  hourHeight: CSSProperties["height"];
+  minorGridlinesPerHour: number;
+  timeRangeFormatter: (startTime: number, endTime: number) => string;
+  timeFormatter: (time: number) => string;
+  defaultTileColor: CSSProperties["backgroundColor"];
+  customTileComponent?: FC<{ event: CustomCalendarEvent }>;
+  tileContent?: FC<{ event: CustomCalendarEvent }>;
 }

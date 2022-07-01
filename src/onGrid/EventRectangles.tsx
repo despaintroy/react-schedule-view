@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ThemeContext } from "../utils/themeContext";
 import { testContrast } from "../utils/cssColorFunctions";
 import { positionEventsOnGrid } from "../utils/eventOrganizeDisplay";
 import { CalendarEvent, DaySchedule } from "../utils/models";
+import { ThemeContext } from "../utils/themeContext";
 
 export interface EventRectanglesProps<
   CustomCalendarEvent extends CalendarEvent
@@ -28,12 +28,10 @@ const EventRectangles = <CustomCalendarEvent extends CalendarEvent>(
   const theme = useContext(ThemeContext);
 
   const {
-    eventTiles: {
-      defaultColor,
-      timeRangeFormatter,
-      style,
-      customTileComponent: CustomTileComponent,
-    },
+    defaultTileColor,
+    timeRangeFormatter,
+    style,
+    customTileComponent: CustomTileComponent,
   } = theme;
 
   return (
@@ -65,7 +63,7 @@ const EventRectangles = <CustomCalendarEvent extends CalendarEvent>(
               >
                 {positionedEvents.map(
                   ({ col, endCol, row, endRow, event }, eventIndex) => {
-                    const color = event.color ?? defaultColor;
+                    const color = event.color ?? defaultTileColor;
 
                     return (
                       <div
@@ -81,9 +79,9 @@ const EventRectangles = <CustomCalendarEvent extends CalendarEvent>(
                           padding: "5px",
                           backgroundColor: color,
                           color: testContrast(color, "white", "black"),
-                          ...(typeof style === "function"
-                            ? style({ event, theme })
-                            : style),
+                          ...(typeof style?.eventTiles === "function"
+                            ? style.eventTiles(event, theme)
+                            : style?.eventTiles),
                         }}
                         onClick={() => (handleEventClick ?? (() => {}))(event)}
                       >

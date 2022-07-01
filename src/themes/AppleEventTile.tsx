@@ -11,7 +11,7 @@ export const AppleEventTile = <
   const { event } = props;
   const theme = useContext(ThemeContext);
 
-  const color = event.color ?? theme.eventTiles.defaultColor;
+  const color = event.color ?? theme.defaultTileColor;
   const colorRGB = cssColorToRGB(color);
   const colorHSL = RGBToHSL(colorRGB);
   const mediumLightnessColorString = `hsl(${colorHSL[0]}, ${colorHSL[1]}%, 50%)`;
@@ -27,8 +27,8 @@ export const AppleEventTile = <
         color: darkLightnessColorString,
       }}
     >
-      {theme.eventTiles.tileContent ? (
-        theme.eventTiles.tileContent({ event })
+      {theme.tileContent ? (
+        theme.tileContent({ event })
       ) : (
         <>
           <div
@@ -37,10 +37,7 @@ export const AppleEventTile = <
               fontWeight: "lighter",
             }}
           >
-            {theme.eventTiles.timeRangeFormatter(
-              event.startTime,
-              event.endTime
-            )}
+            {theme.timeRangeFormatter(event.startTime, event.endTime)}
           </div>
           <div
             style={{ fontWeight: "bold", fontSize: "0.8rem", lineHeight: 1.2 }}
