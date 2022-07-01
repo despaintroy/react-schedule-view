@@ -41,7 +41,6 @@ export const googleTheme: ScheduleTheme = {
       ),
     }),
   },
-  subdivisionsPerHour: 12,
   hourHeight: "46px",
   minorGridlinesPerHour: 0,
   timeRangeFormatter: timeRangeFormatter,

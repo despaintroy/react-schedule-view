@@ -1,14 +1,17 @@
 import { useContext } from "react";
 import { testContrast } from "../utils/cssColorFunctions";
 import { positionEventsOnGrid } from "../utils/eventOrganizeDisplay";
-import { CalendarEvent, DaySchedule } from "../utils/models";
+import {
+  CalendarEvent,
+  DaySchedule,
+  SUBDIVISIONS_PER_HOUR,
+} from "../utils/models";
 import { ThemeContext } from "../utils/themeContext";
 
 export interface EventRectanglesProps<
   CustomCalendarEvent extends CalendarEvent
 > {
   daySchedules: DaySchedule<CustomCalendarEvent>[];
-  subdivisionsPerHour: number;
   viewStartTime: number;
   viewEndTime: number;
   handleEventClick?: (event: CustomCalendarEvent) => void;
@@ -17,13 +20,7 @@ export interface EventRectanglesProps<
 const EventRectangles = <CustomCalendarEvent extends CalendarEvent>(
   props: EventRectanglesProps<CustomCalendarEvent>
 ) => {
-  const {
-    daySchedules,
-    subdivisionsPerHour,
-    viewStartTime,
-    viewEndTime,
-    handleEventClick,
-  } = props;
+  const { daySchedules, viewStartTime, viewEndTime, handleEventClick } = props;
 
   const theme = useContext(ThemeContext);
 
@@ -32,13 +29,14 @@ const EventRectangles = <CustomCalendarEvent extends CalendarEvent>(
     timeRangeFormatter,
     style,
     customTileComponent: CustomTileComponent,
+    themeTileContent: ThemeTileContent,
   } = theme;
 
   return (
     <>
       {daySchedules.map((day, dayIndex) =>
         positionEventsOnGrid({
-          subdivisionsPerHour,
+          subdivisionsPerHour: SUBDIVISIONS_PER_HOUR,
           events: day.events,
           viewStartTime,
           viewEndTime,
@@ -87,6 +85,8 @@ const EventRectangles = <CustomCalendarEvent extends CalendarEvent>(
                       >
                         {CustomTileComponent ? (
                           <CustomTileComponent event={event} />
+                        ) : ThemeTileContent ? (
+                          <ThemeTileContent event={event} />
                         ) : (
                           <>
                             <div style={{ fontWeight: "bold" }}>

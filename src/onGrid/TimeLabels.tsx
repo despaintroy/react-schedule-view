@@ -1,14 +1,14 @@
 import { FC, useContext } from "react";
+import { SUBDIVISIONS_PER_HOUR } from "../utils/models";
 import { ThemeContext } from "../utils/themeContext";
 
 export interface TimeLabelsProps {
   numHours: number;
-  subdivisionsPerHour: number;
   viewStartTime: number;
 }
 
 const TimeLabels: FC<TimeLabelsProps> = (props) => {
-  const { numHours, subdivisionsPerHour, viewStartTime } = props;
+  const { numHours, viewStartTime } = props;
 
   const theme = useContext(ThemeContext);
 
@@ -20,7 +20,7 @@ const TimeLabels: FC<TimeLabelsProps> = (props) => {
             key={i}
             style={{
               gridColumn: `1`,
-              gridRow: `${i * subdivisionsPerHour + 2}`,
+              gridRow: `${i * SUBDIVISIONS_PER_HOUR + 2}`,
               textAlign: "right",
               paddingRight: "1rem",
               ...theme.style?.timeScaleLabels,

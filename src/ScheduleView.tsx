@@ -2,8 +2,14 @@ import DayLabels from "./onGrid/DayLabels";
 import EventRectangles from "./onGrid/EventRectangles";
 import Gridlines from "./onGrid/Gridlines";
 import TimeLabels from "./onGrid/TimeLabels";
+import { ThemeName, themes } from "./themes";
 import { DEFAULT_THEME } from "./themes/default";
-import { CalendarEvent, DaySchedule, ScheduleTheme } from "./utils/models";
+import {
+  CalendarEvent,
+  DaySchedule,
+  ScheduleTheme,
+  SUBDIVISIONS_PER_HOUR,
+} from "./utils/models";
 import { ThemeContext } from "./utils/themeContext";
 
 export interface ScheduleViewProps<CustomCalendarEvent extends CalendarEvent> {
@@ -11,7 +17,7 @@ export interface ScheduleViewProps<CustomCalendarEvent extends CalendarEvent> {
   viewStartTime?: number;
   viewEndTime?: number;
   handleEventClick?: (event: CustomCalendarEvent) => void;
-  theme?: ScheduleTheme;
+  theme?: ScheduleTheme | ThemeName;
 }
 
 const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
@@ -22,10 +28,13 @@ const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
     viewStartTime = 0,
     viewEndTime = 24,
     handleEventClick,
-    theme = DEFAULT_THEME,
+    theme: themeOrName = DEFAULT_THEME,
   } = props;
 
-  const { subdivisionsPerHour, hourHeight, style } = theme;
+  const theme =
+    typeof themeOrName === "string" ? themes[themeOrName] : themeOrName;
+
+  const { hourHeight, style } = theme;
 
   const numHours = viewEndTime - viewStartTime;
   const numDays = daySchedules.length;
@@ -37,8 +46,8 @@ const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
           display: "grid",
           gridTemplateColumns: `auto repeat(${numDays}, 1fr)`,
           gridTemplateRows: `auto repeat(${
-            numHours * subdivisionsPerHour
-          }, calc(${hourHeight} / ${subdivisionsPerHour}))`,
+            numHours * SUBDIVISIONS_PER_HOUR
+          }, calc(${hourHeight} / ${SUBDIVISIONS_PER_HOUR}))`,
           ...style?.root,
         }}
       >
@@ -46,15 +55,10 @@ const ScheduleView = <CustomCalendarEvent extends CalendarEvent>(
 
         <DayLabels dayNames={daySchedules.map((day) => day.name)} />
 
-        <TimeLabels
-          viewStartTime={viewStartTime}
-          numHours={numHours}
-          subdivisionsPerHour={subdivisionsPerHour}
-        />
+        <TimeLabels viewStartTime={viewStartTime} numHours={numHours} />
 
         <EventRectangles
           daySchedules={daySchedules}
-          subdivisionsPerHour={subdivisionsPerHour}
           viewStartTime={viewStartTime}
           viewEndTime={viewEndTime}
           handleEventClick={handleEventClick}

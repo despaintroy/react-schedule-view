@@ -35,7 +35,6 @@ export const appleTheme: ScheduleTheme = {
       backgroundColor: "unset",
     },
   },
-  subdivisionsPerHour: 12,
   hourHeight: "46px",
   minorGridlinesPerHour: 0,
   timeRangeFormatter: (startTime, _endTime) =>

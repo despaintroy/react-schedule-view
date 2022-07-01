@@ -27,8 +27,8 @@ export const AppleEventTile = <
         color: darkLightnessColorString,
       }}
     >
-      {theme.tileContent ? (
-        theme.tileContent({ event })
+      {theme.themeTileContent ? (
+        theme.themeTileContent({ event })
       ) : (
         <>
           <div

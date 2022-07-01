@@ -1,5 +1,7 @@
 import { CSSProperties, FC } from "react";
 
+export const SUBDIVISIONS_PER_HOUR = 12;
+
 export interface DaySchedule<
   CustomCalendarEvent extends CalendarEvent = CalendarEvent
 > {
@@ -43,26 +45,29 @@ export type DeepPartial<T> = {
 export interface ScheduleTheme<
   CustomCalendarEvent extends CalendarEvent = CalendarEvent
 > {
-  style?: {
-    root?: CSSProperties;
-    dayLabels?: CSSProperties;
-    timeScaleLabels?: CSSProperties;
-    eventTiles?:
-      | CSSProperties
-      | ((
-          event: CustomCalendarEvent,
-          theme: ScheduleTheme<CustomCalendarEvent>
-        ) => CSSProperties);
-    majorGridlinesBorder?: CSSProperties["borderStyle"];
-    minorGridlinesBorder?: CSSProperties["borderStyle"];
-    verticalGridlinesBorder?: CSSProperties["borderStyle"];
-  };
-  subdivisionsPerHour: number; // Default 12, means 5 min intervals
+  style?: ScheduleThemeStyle;
   hourHeight: CSSProperties["height"];
   minorGridlinesPerHour: number;
   timeRangeFormatter: (startTime: number, endTime: number) => string;
   timeFormatter: (time: number) => string;
   defaultTileColor: CSSProperties["backgroundColor"];
   customTileComponent?: FC<{ event: CustomCalendarEvent }>;
-  tileContent?: FC<{ event: CustomCalendarEvent }>;
+  themeTileContent?: FC<{ event: CustomCalendarEvent }>;
+}
+
+export interface ScheduleThemeStyle<
+  CustomCalendarEvent extends CalendarEvent = CalendarEvent
+> {
+  root?: CSSProperties;
+  dayLabels?: CSSProperties;
+  timeScaleLabels?: CSSProperties;
+  eventTiles?:
+    | CSSProperties
+    | ((
+        event: CustomCalendarEvent,
+        theme: ScheduleTheme<CustomCalendarEvent>
+      ) => CSSProperties);
+  majorGridlinesBorder?: CSSProperties["borderStyle"];
+  minorGridlinesBorder?: CSSProperties["borderStyle"];
+  verticalGridlinesBorder?: CSSProperties["borderStyle"];
 }
