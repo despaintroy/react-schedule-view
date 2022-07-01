@@ -2,8 +2,6 @@
 
 React Schedule View is a zero-dependency, fully customizable component for displaying schedules in a daily or week format.
 
-This package is currently under development and should not be used until a 1.0 version is published.
-
 ![](./_media/screenshot.jpg)
 
 ## Install
@@ -14,17 +12,19 @@ React Schedule View is compatible with React versions 17 and 18.
 npm i react-schedule-view
 ```
 
-## Example Usage
+## Basic Usage
 
 ```typescript
 const data: DaySchedule[] = [
   {
-    name: "Today",
+    name: "Friday",
     events: [
       {
         startTime: 16,
         endTime: 18,
         title: "Check-in",
+        description:
+          "Follow the signs to the registration desk inside the north entrance",
       },
       {
         startTime: 16.5,
@@ -33,8 +33,18 @@ const data: DaySchedule[] = [
       },
       {
         startTime: 18,
-        endTime: 18.75,
+        endTime: 19,
         title: "Opening Keynote",
+      },
+    ],
+  },
+  {
+    name: "Saturday",
+    events: [
+      {
+        startTime: 17,
+        endTime: 19,
+        title: "Next Day's Event",
       },
     ],
   },
@@ -45,23 +55,48 @@ const data: DaySchedule[] = [
 <ScheduleView daySchedules={data} viewStartTime={15} viewEndTime={20} />
 ```
 
-![](./_media/screenshot-example.jpg)
+![](./_media/example-usage.jpg)
 
-## Schedule Data Format
+## Alternate Theme
 
-### DaySchedule
+To change the calendar theme, you can pass a `theme` prop to the `ScheduleView` component. The theme can be a string `"apple"` or `"google"` (default), or a custom `CalendarTheme` object.
 
-| Property | Type                   | Description            |
-| -------- | ---------------------- | ---------------------- |
-| `name`   | `string`               | Name of the day        |
-| `events` | `Array<CalendarEvent>` | Array of CalendarEvent |
+```tsx
+<ScheduleView theme="apple" ... />
+```
 
-### CalendarEvent
+![](./_media/example-usage-apple.jpg)
 
-| Property      | Type      | Description                            |
-| ------------- | --------- | -------------------------------------- |
-| `startTime`   | `number`  | Start time of the event                |
-| `endTime`     | `number`  | End time of the event                  |
-| `title`       | `string`  | Title of the event                     |
-| `description` | `string?` | Description of the event               |
-| `color`       | `string?` | Color of the event tile as a CSS color |
+## Custom Tile Colors
+
+Colors for each tile can be optionally given in the day schedule event data. If no color is given, the theme's default color (blue) will be used. This package includes both Apple and Google colors that can be used, but you can also use any CSS color value (RGB, HEX, color name, etc.).
+
+```typescript
+const data3: DaySchedule[] = [
+  {
+    name: "Custom Colors",
+    events: [
+      {
+        startTime: 16,
+        endTime: 18,
+        title: "Theme Color",
+        color: colors.apple.red,
+      },
+      {
+        startTime: 16.5,
+        endTime: 17.75,
+        title: "RGB Color",
+        color: "rgb(255, 0, 255)",
+      },
+      {
+        startTime: 18,
+        endTime: 19,
+        title: "CSS Color Name",
+        color: "royalblue",
+      },
+    ],
+  },
+];
+```
+
+![](./_media/example-usage-color.jpg)
