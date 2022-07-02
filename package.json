@@ -1,6 +1,6 @@
 {
   "name": "react-schedule-view",
-  "version": "0.4.2",
+  "version": "1.0.0",
   "description": "A zero-dependency, fully customizable component for displaying schedules in a daily or week format",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
