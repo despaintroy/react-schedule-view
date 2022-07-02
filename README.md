@@ -2,6 +2,8 @@
 
 React Schedule View is a zero-dependency, fully customizable component for displaying schedules in a daily or week format.
 
+View the complete documentation at [https://despaintroy.github.io/react-schedule-view/](https://despaintroy.github.io/react-schedule-view/)
+
 ![](./docs/_media/screenshot.jpg)
 
 ## Install
