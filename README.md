@@ -72,7 +72,7 @@ To change the calendar theme, you can pass a `theme` prop to the `ScheduleView` 
 Colors for each tile can be optionally given in the day schedule event data. If no color is given, the theme's default color (blue) will be used. This package includes both Apple and Google colors that can be used, but you can also use any CSS color value (RGB, HEX, color name, etc.).
 
 ```typescript
-const data3: DaySchedule[] = [
+const data: DaySchedule[] = [
   {
     name: "Custom Colors",
     events: [
@@ -99,7 +99,11 @@ const data3: DaySchedule[] = [
 ];
 ```
 
-![](./docs/_media/example-usage-color.jpg)
+```tsx
+<ScheduleView daySchedules={data} viewStartTime={15} viewEndTime={20} />
+```
+
+![](./_media/example-usage-color.jpg)
 
 ## Complete Documentation
 

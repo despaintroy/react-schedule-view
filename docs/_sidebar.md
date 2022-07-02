@@ -5,6 +5,7 @@
 
 - Customization
 
+  - [createTheme](createTheme.md)
   - [Grid Lines](gridLines.md)
   - [Event Tiles](eventTiles.md)
   - [Labels](labels.md)

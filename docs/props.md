@@ -1,6 +1,8 @@
 # Props
 
-## ScheduleView Props
+## Component Props
+
+### ScheduleView
 
 | Prop               | Type                                          | Description                                |
 | ------------------ | --------------------------------------------- | ------------------------------------------ |
@@ -10,14 +12,16 @@
 | `handleEventClick` | `(event: CalendarEvent) => void \| undefined` | Callback for when an event is clicked      |
 | `theme`            | `ScheduleTheme \| ThemeName \| undefined`     | `ScheduleTheme` or `"apple"` or `"google"` |
 
-## DaySchedule
+## Types
+
+### DaySchedule
 
 | Property | Type                             | Description                 |
 | -------- | -------------------------------- | --------------------------- |
 | `name`   | `string`                         | Day label for top of column |
 | `events` | `Array<T extends CalendarEvent>` | See `CalendarEvent`         |
 
-## CalendarEvent
+### CalendarEvent
 
 | Property      | Type                  | Description                               |
 | ------------- | --------------------- | ----------------------------------------- |
@@ -27,7 +31,7 @@
 | `description` | `string \| undefined` | Optional event description                |
 | `color`       | `string \| undefined` | Optional tile color (any CSS color value) |
 
-## ScheduleTheme
+### ScheduleTheme
 
 | Property                | Type                                             | Description                                      |
 | ----------------------- | ------------------------------------------------ | ------------------------------------------------ |
@@ -40,7 +44,7 @@
 | `customTileComponent`   | `FC<{ event: CalendarEvent }> \| undefined`      | Overrides component used to render tiles         |
 | `themeTileContent`      | `FC<{ event: CalendarEvent }> \| undefined`      | Overrides inner contents of included theme tiles |
 
-## ScheduleThemeStyle
+### ScheduleThemeStyle
 
 | Property                  | Type                                                                                           | Description                                                                    |
 | ------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
