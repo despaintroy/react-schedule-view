@@ -2,7 +2,7 @@
 
 Grid lines' style are customized through the `style` prop, and the number of minor gridlines is set by the `minorGridlinesPerHour` prop. When setting the style of a gridline, pass a value for for the `border-style` css attribute.
 
-```ts
+```typescript
 const customTheme = createTheme("google", {
   minorGridlinesPerHour: 2,
   style: {
@@ -14,12 +14,7 @@ const customTheme = createTheme("google", {
 
 ...
 
-<ScheduleView
-  theme={customTheme}
-  daySchedules={data}
-  viewStartTime={15}
-  viewEndTime={20}
-/>
+<ScheduleView theme={customTheme} ... />
 ```
 
 ![](./_media/example-gridlines.jpg)
