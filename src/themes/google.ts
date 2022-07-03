@@ -1,6 +1,7 @@
+import { CSSProperties } from "react";
 import { testContrast } from "../utils/cssColorFunctions";
 import { numToHH, timeRangeFormatter } from "../utils/helpers";
-import { ScheduleTheme } from "../utils/models";
+import { CalendarEvent, ScheduleTheme } from "../utils/models";
 
 export const googleColors = {
   greyGridline: "#DADCE0",
@@ -18,6 +19,18 @@ export const googleColors = {
   brown: "#74574A",
 };
 
+const calculateTextColor = (
+  event: CalendarEvent,
+  theme: ScheduleTheme
+): CSSProperties["color"] => {
+  const defaultColor =
+    typeof theme.defaultTileColor === "function"
+      ? theme.defaultTileColor(event)
+      : theme.defaultTileColor;
+
+  return testContrast(event.color ?? defaultColor, "white", "black", 0.3);
+};
+
 export const googleTheme: ScheduleTheme = {
   style: {
     root: { fontFamily: "Roboto, Helvetica, Arial, sans-serif" },
@@ -33,12 +46,7 @@ export const googleTheme: ScheduleTheme = {
     minorGridlinesBorder: `1px dotted ${googleColors.greyGridline}`,
     verticalGridlinesBorder: `1px solid ${googleColors.greyGridline}`,
     eventTiles: (event, theme) => ({
-      color: testContrast(
-        event.color ?? theme.defaultTileColor,
-        "white",
-        "black",
-        0.3
-      ),
+      color: calculateTextColor(event, theme),
     }),
   },
   hourHeight: "46px",

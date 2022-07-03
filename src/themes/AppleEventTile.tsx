@@ -11,7 +11,11 @@ export const AppleEventTile = <
   const { event } = props;
   const theme = useContext(ThemeContext);
 
-  const color = event.color ?? theme.defaultTileColor;
+  const defaultColor =
+    typeof theme.defaultTileColor === "function"
+      ? theme.defaultTileColor(event)
+      : theme.defaultTileColor;
+  const color = event.color ?? defaultColor;
   const colorRGB = cssColorToRGB(color);
   const colorHSL = RGBToHSL(colorRGB);
   const mediumLightnessColorString = `hsl(${colorHSL[0]}, ${colorHSL[1]}%, 50%)`;

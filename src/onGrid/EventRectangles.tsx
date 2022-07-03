@@ -61,7 +61,11 @@ const EventRectangles = <CustomCalendarEvent extends CalendarEvent>(
               >
                 {positionedEvents.map(
                   ({ col, endCol, row, endRow, event }, eventIndex) => {
-                    const color = event.color ?? defaultTileColor;
+                    const defaultColor =
+                      typeof defaultTileColor === "function"
+                        ? defaultTileColor(event)
+                        : defaultTileColor;
+                    const color = event.color ?? defaultColor;
 
                     return (
                       <div

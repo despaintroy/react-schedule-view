@@ -50,7 +50,9 @@ export interface ScheduleTheme<
   minorGridlinesPerHour: number;
   timeRangeFormatter: (startTime: number, endTime: number) => string;
   timeFormatter: (time: number) => string;
-  defaultTileColor: CSSProperties["backgroundColor"];
+  defaultTileColor:
+    | CSSProperties["backgroundColor"]
+    | ((event: CustomCalendarEvent) => CSSProperties["backgroundColor"]);
   customTileComponent?: FC<{ event: CustomCalendarEvent }>;
   themeTileContent?: FC<{ event: CustomCalendarEvent }>;
 }
