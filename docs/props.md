@@ -40,7 +40,7 @@
 | `minorGridlinesPerHour` | `number`                                         | Number of minor gridlines subdividing each hour  |
 | `timeRangeFormatter`    | `(startTime: number, endTime: number) => string` | Formatter for time range labels                  |
 | `timeFormatter`         | `(time: number) => string`                       | Formatter for time labels                        |
-| `defaultTileColor`      | `string`                                         | Default tile color as a CSS value                |
+| `defaultTileColor`      | `string \| ((event: CalendarEvent) => string)`   | Default tile color as a CSS value                |
 | `customTileComponent`   | `FC<{ event: CalendarEvent }> \| undefined`      | Overrides component used to render tiles         |
 | `themeTileContent`      | `FC<{ event: CalendarEvent }> \| undefined`      | Overrides inner contents of included theme tiles |
 

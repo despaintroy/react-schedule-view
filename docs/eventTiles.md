@@ -4,7 +4,7 @@
 
 Colors for each tile can be optionally given in the day schedule event data. This package includes both Apple and Google colors that can be used, but you can also use any CSS color value (RGB, HEX, color name, etc.). If no color is given, the theme's default color (blue) will be used.
 
-To change the default tile color, provide a `defaultTileColor` value in the theme.
+To change the default tile color, provide a `defaultTileColor` value in the theme. This can be a CSS color value or a function that returns a CSS color value given the event.
 
 ```typescript
 const data: DaySchedule[] = [
