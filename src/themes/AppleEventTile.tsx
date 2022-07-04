@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { cssColorToRGB, RGBToHSL } from "../utils/cssColorFunctions";
 import { CalendarEvent } from "../utils/models";
 import { ThemeContext } from "../utils/themeContext";
@@ -11,12 +11,20 @@ export const AppleEventTile = <
   const { event } = props;
   const theme = useContext(ThemeContext);
 
-  const defaultColor =
-    typeof theme.defaultTileColor === "function"
-      ? theme.defaultTileColor(event)
-      : theme.defaultTileColor;
-  const color = event.color ?? defaultColor;
-  const colorRGB = cssColorToRGB(color);
+  // Using useEffect here to ensure color is converted on client, not SSR, since `document` must be available
+  const [colorRGB, setColorRGB] = useState<number[]>();
+  useEffect(() => {
+    const defaultColor =
+      typeof theme.defaultTileColor === "function"
+        ? theme.defaultTileColor(event)
+        : theme.defaultTileColor;
+    const color = event.color ?? defaultColor;
+
+    setColorRGB(cssColorToRGB(color));
+  }, []);
+
+  if (!colorRGB) return <></>;
+
   const colorHSL = RGBToHSL(colorRGB);
   const mediumLightnessColorString = `hsl(${colorHSL[0]}, ${colorHSL[1]}%, 50%)`;
   const darkLightnessColorString = `hsl(${colorHSL[0]}, ${colorHSL[1]}%, 30%)`;

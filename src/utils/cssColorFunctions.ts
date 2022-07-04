@@ -48,7 +48,9 @@ export const getLuminance = (color: CSSProperties["color"]): number => {
  * Converts a CSS color string to RGB values
  */
 export const cssColorToRGB = (color: CSSProperties["color"]): number[] => {
-  if (!color) return [0, 0, 0];
+  const isBrowser = typeof window !== "undefined";
+
+  if (!color || !isBrowser) return [0, 0, 0];
 
   var canvas = document.createElement("canvas");
   canvas.width = 1;

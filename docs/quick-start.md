@@ -104,3 +104,7 @@ const data: DaySchedule[] = [
 ```
 
 ![](./_media/example-usage-color.jpg)
+
+## Server Side Rendering
+
+The "apple" theme is not compatible with server side rendering since CSS colors must be parsed in the browser. This function is already safely deferred to run only in the browser.

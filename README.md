@@ -1,5 +1,8 @@
 # React Schedule View
 
+![npm version](https://badge.fury.io/js/react-schedule-view.svg)
+![NPM License](https://img.shields.io/npm/l/react-schedule-view)
+
 React Schedule View is a zero-dependency, fully customizable component for displaying schedules in a daily or week format.
 
 View the complete documentation at [https://despaintroy.github.io/react-schedule-view/](https://despaintroy.github.io/react-schedule-view/)
@@ -106,6 +109,10 @@ const data: DaySchedule[] = [
 ```
 
 ![](./_media/example-usage-color.jpg)
+
+## Server Side Rendering
+
+The "apple" theme is not compatible with server side rendering since CSS colors must be parsed in the browser. This function is already safely deferred to run only in the browser.
 
 ## Complete Documentation
 
