@@ -30,12 +30,12 @@
     "apple calendar"
   ],
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "@types/react": "^18.0.19",
     "prettier-plugin-organize-imports": "^3.1.1",
     "react": "^18.2.0",
-    "rollup": "^2.79.0",
+    "rollup": "^4.22.4",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.34.0",
     "typescript": "^4.8.3"
